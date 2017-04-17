@@ -25,11 +25,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import static com.example.android.todolist.data.TaskContract.TaskEntry.TABLE_NAME;
 
 // Verify that TaskContentProvider extends from ContentProvider and implements required methods
 public class TaskContentProvider extends ContentProvider {
+
+    public static final String TAG = TaskContentProvider.class.getSimpleName();
 
     // Define final integer constants for the directory of tasks and a single item.
     // It's convention to use 100, 200, 300, etc for directories,
@@ -85,7 +88,7 @@ public class TaskContentProvider extends ContentProvider {
     public Uri insert(@NonNull Uri uri, ContentValues values) {
         // COMPLETED (1) Get access to the task database (to write new data to)
         final SQLiteDatabase db = mTaskDbHelper.getWritableDatabase();
-
+        Log.d(TAG,"inside insert");
         // COMPLETED (2) Write URI matching code to identify the match for the tasks directory
         int match = sUriMatcher.match(uri);
         Uri returnUri; // URI to be returned

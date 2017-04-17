@@ -64,6 +64,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 setPreferenceSummary(preference, value);
             }
         }
+        else if(null != preference && preference instanceof EditTextPreference){
+            setPreferenceSummary(preference, sharedPreferences.getString(preference.getKey(),getString(R.string.pref_shape_size_default)));
+        }
+
     }
 
     /**
@@ -73,7 +77,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
      * @param value      The value that the preference was updated to
      */
     private void setPreferenceSummary(Preference preference, String value) {
-        // TODO (3) Don't forget to add code here to properly set the summary for an EditTextPreference
+        // DONE (3) Don't forget to add code here to properly set the summary for an EditTextPreference
         if (preference instanceof ListPreference) {
             // For list preferences, figure out the label of the selected value
             ListPreference listPreference = (ListPreference) preference;
@@ -82,6 +86,11 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
                 // Set the summary to that label
                 listPreference.setSummary(listPreference.getEntries()[prefIndex]);
             }
+        }
+        if (preference instanceof EditTextPreference) {
+            // For list preferences, figure out the label of the selected value
+            EditTextPreference editTextPreference = (EditTextPreference) preference;
+            editTextPreference.setSummary(value);
         }
     }
     
