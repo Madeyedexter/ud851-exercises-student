@@ -46,7 +46,10 @@ public class NotificationUtils {
      */
     private static final int WATER_REMINDER_PENDING_INTENT_ID = 3417;
 
-    //  TODO (1) Create a method to clear all notifications
+    //  DONE (1) Create a method to clear all notifications
+    public static void clearAllNotifications(){
+        NotificationManager notificationManager = 
+    }
 
     public static void remindUserBecauseCharging(Context context) {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context)
